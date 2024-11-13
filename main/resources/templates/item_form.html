@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Item Form</title>
+</head>
+<body>
+<h1 th:text="${#strings.isEmpty(item.id) ? 'New Item' : 'Edit Item'}"></h1>
+
+<!-- Item form -->
+<form th:action="@{/itemlist}" th:object="${item}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" placeholder="Enter item name" required />
+    <br><br>
+
+    <label>Description:</label>
+    <textarea th:field="*{description}" placeholder="Enter description" required></textarea>
+    <br><br>
+
+    <label>Price:</label>
+    <input type="number" th:field="*{price}" placeholder="Enter price" required step="0.01" />
+    <br><br>
+
+    <button type="submit">Save</button>
+
+    <!-- Cancel button that returns to the item list page -->
+    <a th:href="@{/itemlist}"><button type="button">Cancel</button></a>
+</form>
+</body>
+</html>

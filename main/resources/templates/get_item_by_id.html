@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Get Item by ID</title>
+</head>
+<body>
+<h1>Find Item by ID</h1>
+
+<!-- Display message if available (e.g., action canceled or item not found) -->
+<p th:text="${message}" th:if="${message != null}"></p>
+
+<!-- Form to enter ID and fetch item -->
+<form th:action="@{/itemlist/fetch}" method="post">
+    <label>Enter Item ID:</label>
+    <input type="number" name="id" placeholder="Enter item ID" required />
+    <button type="submit">Submit</button>
+</form>
+<br>
+
+<!-- Cancel button -->
+<a th:href="@{/itemlist/cancel}"><button type="button">Cancel</button></a>
+</body>
+</html>

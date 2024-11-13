@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Item List</title>
+</head>
+<body>
+<h1>Item List</h1>
+
+<!-- Filter form -->
+<form th:action="@{/itemlist/filter}" method="get">
+    <input type="text" name="name" placeholder="Filter by name" />
+    <button type="submit">Filter</button>
+</form>
+<br>
+
+<!-- Link to add a new item -->
+<a th:href="@{/itemlist/new}">Add New Item</a>
+<br><br>
+
+<!-- Table of items -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.description}"></td>
+        <td th:text="${item.price}"></td>
+        <td>
+            <a th:href="@{/itemlist/edit/{id}(id=${item.id})}">Edit</a> |
+            <a th:href="@{/itemlist/delete/{id}(id=${item.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
